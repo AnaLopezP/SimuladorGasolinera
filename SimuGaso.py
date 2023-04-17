@@ -1,4 +1,5 @@
 import random
+import time
 from threading import *
 # Llegan coches cada T min máx (T es 15 min)
 # N surtidores de combustible (N es 1)
@@ -20,7 +21,7 @@ class Cola:
 
     def encolar(self, x):
         self.items.append(x)
-    
+
     def desencolar(self):
         try:
             return self.items.pop(0)
@@ -39,10 +40,14 @@ class Cliente(Thread):
         self.tiempo_cola = 3
 
     def llegar(self):
-        pass
+        self.estado = "APARCAO"
+        time.sleep(self.tiempo_llegada)
 
     def llenar(self):
-        pass
+        self.estado = "RELLENANDO DEPÓSITO"
 
     def pagar(self):
-        pass
+        self.estado = "PAGANDO"
+
+    def salir(self):
+        self.estado = "TERMIADO"
