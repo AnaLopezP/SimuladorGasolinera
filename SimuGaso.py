@@ -1,3 +1,5 @@
+import random
+from threading import *
 # Llegan coches cada T min máx (T es 15 min)
 # N surtidores de combustible (N es 1)
 # Bajar y llenar el depósito entre 5 y 10 min
@@ -27,3 +29,20 @@ class Cola:
         
     def esta_vacia(self):
         return self.items == []
+
+class Cliente(Thread):
+    def __init__(self, id, estado):
+        self.estado = None
+        self.id = id
+        self.tiempo_llenar = random.randint(5, 10)
+        self.tiempo_llegada = random.randint(0, 15)
+        self.tiempo_cola = 3
+
+    def llegar(self):
+        pass
+
+    def llenar(self):
+        pass
+
+    def pagar(self):
+        pass
