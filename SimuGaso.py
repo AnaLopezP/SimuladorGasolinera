@@ -35,6 +35,7 @@ class Cliente(Thread):
     tiempo_llegada = random.randint(0, 15)
 
     def __init__(self, id, estado):
+        super().__init__()
         self.estado = estado
         self.id = id
         self.tiempo_llenar = random.randint(5, 10)
