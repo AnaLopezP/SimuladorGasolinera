@@ -72,3 +72,6 @@ c = Cola()
 for i in range(50):
     coche = Cliente(i, None)
     c.encolar(coche)
+
+for i in c.items:
+    i.start()
