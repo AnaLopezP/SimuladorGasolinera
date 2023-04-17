@@ -39,15 +39,17 @@ class Cliente(Thread):
         self.tiempo_llegada = random.randint(0, 15)
         self.tiempo_cola = 3
 
-    def llegar(self):
+    def llegada(self):
         self.estado = "APARCAO"
         time.sleep(self.tiempo_llegada)
 
     def llenar(self):
         self.estado = "RELLENANDO DEPÓSITO"
+        time.sleep(self.tiempo_llenar)
 
     def pagar(self):
         self.estado = "PAGANDO"
-
+        time.sleep(self.tiempo_cola)
+        
     def salir(self):
         self.estado = "TERMIADO"
