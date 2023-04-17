@@ -33,7 +33,7 @@ class Cola:
 
 class Cliente(Thread):
     def __init__(self, id, estado):
-        self.estado = None
+        self.estado = estado
         self.id = id
         self.tiempo_llenar = random.randint(5, 10)
         self.tiempo_llegada = random.randint(0, 15)
@@ -42,14 +42,24 @@ class Cliente(Thread):
     def llegada(self):
         self.estado = "APARCAO"
         time.sleep(self.tiempo_llegada)
+        print(f"El coche {self.id} ha llegado a la gasolinera")
 
     def llenar(self):
         self.estado = "RELLENANDO DEPÓSITO"
         time.sleep(self.tiempo_llenar)
+        print(f"El coche {self.id} está llenando el depósito")
 
     def pagar(self):
         self.estado = "PAGANDO"
         time.sleep(self.tiempo_cola)
-        
+        print(f"El coche {self.id} está pagando")
+
     def salir(self):
         self.estado = "TERMIADO"
+        print(f"El coche {self.id} se ha ido")
+
+    def run(self):
+        self.llegada()
+        self.llenar()
+        self.pagar()
+        self.salir()
