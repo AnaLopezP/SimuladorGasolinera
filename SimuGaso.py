@@ -42,6 +42,8 @@ class Cliente(Thread):
         #self.tiempo_llegada = random.randint(0, 15)
         self.tiempo_cola = 3
 
+    def tiempo_medio(self):
+        print("Ha tardado: " + str((self.tiempo_cola + self.tiempo_llegada + self.tiempo_llenar)/3) + "s")
 
     def llegada(self):
         self.estado = "APARCAO"
@@ -71,6 +73,8 @@ class Cliente(Thread):
         self.llenar()
         self.pagar()
         self.salir()
+        self.tiempo_medio()
+
 
 
 semaforo = Semaphore(1) #creamos un semaforo abierto para que entre un coche
