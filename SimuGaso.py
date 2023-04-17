@@ -32,12 +32,15 @@ class Cola:
         return self.items == []
 
 class Cliente(Thread):
+    tiempo_llegada = random.randint(0, 15)
+
     def __init__(self, id, estado):
         self.estado = estado
         self.id = id
         self.tiempo_llenar = random.randint(5, 10)
-        self.tiempo_llegada = random.randint(0, 15)
+        #self.tiempo_llegada = random.randint(0, 15)
         self.tiempo_cola = 3
+
 
     def llegada(self):
         self.estado = "APARCAO"
@@ -63,3 +66,9 @@ class Cliente(Thread):
         self.llenar()
         self.pagar()
         self.salir()
+
+
+c = Cola()
+for i in range(50):
+    coche = Cliente(i, None)
+    c.encolar(coche)
