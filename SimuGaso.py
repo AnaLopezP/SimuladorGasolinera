@@ -47,6 +47,8 @@ class Cliente(Thread):
         self.estado = "APARCAO"
         time.sleep(self.tiempo_llegada)
         print(f"El coche {self.id} ha llegado a la gasolinera")
+        semaforo.acquire() #cerramos en semáforo para que no entren más coches 
+        
 
     def llenar(self):
         self.estado = "RELLENANDO DEPÓSITO"
@@ -61,6 +63,8 @@ class Cliente(Thread):
     def salir(self):
         self.estado = "TERMIADO"
         print(f"El coche {self.id} se ha ido")
+        semaforo.release() #soltamos el semáforo para que entre el siguiente coche
+
 
     def run(self):
         self.llegada()
@@ -69,6 +73,7 @@ class Cliente(Thread):
         self.salir()
 
 
+semaforo = Semaphore(1) #creamos un semaforo abierto para que entre un coche
 c = Cola()
 for i in range(50):
     coche = Cliente(i, None)
